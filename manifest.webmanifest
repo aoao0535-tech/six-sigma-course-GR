@@ -1,12 +1,11 @@
 {
-  "name": "دورة Six Sigma Green Belt خلال شهر",
+  "name": "Six Sigma Green Belt - Bilingual Course",
   "short_name": "Six Sigma GB",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#14532d",
-  "lang": "ar",
-  "dir": "rtl",
+  "dir": "auto",
   "icons": [
     {
       "src": "icon-192.png",
