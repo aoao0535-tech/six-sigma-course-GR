@@ -1,12 +1,12 @@
-const CACHE='ssgb-bi-v7-visible-library-home';
+const CACHE='ssgb-bi-v8-gold-library-return';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
-const LIBRARY_URL='https://eng-abdullah-omar.github.io/aoao0535-tech.github.io/';
+const LIBRARY_URL='https://eng-abdullah-omar.github.io/aoao0535-tech.github.io/?v=20260722-14';
 
 const LIBRARY_STYLE=`<style id="course-library-home-style">
-#courseLibraryHome{position:fixed;z-index:9999;inset-inline-start:14px;top:calc(14px + env(safe-area-inset-top,0px));display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:0 13px;border:1px solid rgba(255,255,255,.38);border-radius:13px;background:rgba(15,23,42,.94);box-shadow:0 10px 30px rgba(15,23,42,.3);backdrop-filter:blur(12px);color:#fff;text-decoration:none;font:800 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;white-space:nowrap;transition:transform .18s ease,background .18s ease}
-#courseLibraryHome:hover{transform:translateY(-2px);background:#166534}#courseLibraryHome:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}@media(max-width:520px){#courseLibraryHome{top:calc(8px + env(safe-area-inset-top,0px));inset-inline-start:8px;min-height:38px;padding:0 10px;font-size:12px;border-radius:11px}}@media print{#courseLibraryHome{display:none!important}}
+#courseLibraryHome{position:fixed;z-index:10000;inset-inline-start:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 19px;border:2px solid #fff3c4;border-radius:16px;background:#f4c861;color:#102a38;text-decoration:none;font:900 15px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;box-shadow:0 14px 38px rgba(0,0,0,.34);white-space:nowrap;transition:transform .18s ease,filter .18s ease}
+#courseLibraryHome:hover{transform:translateY(-2px);filter:brightness(1.04)}#courseLibraryHome:focus-visible{outline:4px solid #fff;outline-offset:3px}#courseLibraryHome .home-icon{font-size:21px;line-height:1}@media(max-width:620px){#courseLibraryHome{inset-inline-start:12px;inset-inline-end:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;min-height:56px;padding:0 16px;border-radius:17px;font-size:16px}}@media print{#courseLibraryHome{display:none!important}}
 </style>`;
-const LIBRARY_BUTTON=`<a id="courseLibraryHome" href="${LIBRARY_URL}" aria-label="العودة إلى مكتبة الدورات" title="مكتبة الدورات / Course Library">⌂ <span>مكتبة الدورات</span></a>`;
+const LIBRARY_BUTTON=`<a id="courseLibraryHome" href="${LIBRARY_URL}" aria-label="العودة إلى مكتبة الدورات"><span class="home-icon">⌂</span><span>العودة إلى مكتبة الدورات</span></a>`;
 
 function injectLibraryButton(html){
   if(html.includes('id="courseLibraryHome"')) return html;
