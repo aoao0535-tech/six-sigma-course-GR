@@ -1,12 +1,12 @@
-const CACHE='ssgb-bi-v6-library-home';
+const CACHE='ssgb-bi-v7-visible-library-home';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 const LIBRARY_URL='https://eng-abdullah-omar.github.io/aoao0535-tech.github.io/';
 
 const LIBRARY_STYLE=`<style id="course-library-home-style">
-#courseLibraryHome{position:fixed;z-index:9999;inset-inline-end:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 15px;border:1px solid rgba(255,255,255,.34);border-radius:15px;background:rgba(15,23,42,.92);box-shadow:0 10px 30px rgba(15,23,42,.28);backdrop-filter:blur(12px);color:#fff;text-decoration:none;font:800 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;white-space:nowrap;transition:transform .18s ease,background .18s ease}
-#courseLibraryHome:hover{transform:translateY(-2px);background:#166534}#courseLibraryHome:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}@media(max-width:520px){#courseLibraryHome{width:46px;padding:0;justify-content:center}#courseLibraryHome span{display:none}}@media print{#courseLibraryHome{display:none!important}}
+#courseLibraryHome{position:fixed;z-index:9999;inset-inline-start:14px;top:calc(14px + env(safe-area-inset-top,0px));display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:0 13px;border:1px solid rgba(255,255,255,.38);border-radius:13px;background:rgba(15,23,42,.94);box-shadow:0 10px 30px rgba(15,23,42,.3);backdrop-filter:blur(12px);color:#fff;text-decoration:none;font:800 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;white-space:nowrap;transition:transform .18s ease,background .18s ease}
+#courseLibraryHome:hover{transform:translateY(-2px);background:#166534}#courseLibraryHome:focus-visible{outline:3px solid #38bdf8;outline-offset:3px}@media(max-width:520px){#courseLibraryHome{top:calc(8px + env(safe-area-inset-top,0px));inset-inline-start:8px;min-height:38px;padding:0 10px;font-size:12px;border-radius:11px}}@media print{#courseLibraryHome{display:none!important}}
 </style>`;
-const LIBRARY_BUTTON=`<a id="courseLibraryHome" href="${LIBRARY_URL}" aria-label="العودة إلى صفحة جميع الدورات" title="جميع الدورات / All Courses">⌂ <span>الدورات / Courses</span></a>`;
+const LIBRARY_BUTTON=`<a id="courseLibraryHome" href="${LIBRARY_URL}" aria-label="العودة إلى مكتبة الدورات" title="مكتبة الدورات / Course Library">⌂ <span>مكتبة الدورات</span></a>`;
 
 function injectLibraryButton(html){
   if(html.includes('id="courseLibraryHome"')) return html;
@@ -33,10 +33,12 @@ self.addEventListener('install',event=>{
 });
 
 self.addEventListener('activate',event=>{
-  event.waitUntil(Promise.all([
-    caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))),
-    self.clients.claim()
-  ]));
+  event.waitUntil((async()=>{
+    await caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))));
+    await self.clients.claim();
+    const windows=await self.clients.matchAll({type:'window',includeUncontrolled:true});
+    await Promise.all(windows.map(client=>client.navigate(client.url).catch(()=>null)));
+  })());
 });
 
 self.addEventListener('fetch',event=>{
